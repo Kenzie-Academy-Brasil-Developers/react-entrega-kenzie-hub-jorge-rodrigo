@@ -1,6 +1,5 @@
 import { toast } from "react-toastify";
 
-
 export const apiSucessLogin = () => {
     toast.success('Login realizado com Sucesso', {
         position: "top-right",

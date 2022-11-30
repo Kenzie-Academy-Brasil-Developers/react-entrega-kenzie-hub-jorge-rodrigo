@@ -56,14 +56,12 @@ export const FormDivStyledRegister = styled(FormDivStyled)`
       height: 850px;
    }
 `
-
 export const Container = styled.div`
     @media(min-width:750px){
         max-width: 1000px;
         margin: 0 auto;
     }
 `
-
 export const FormStyled = styled.form`
    display: flex;
    flex-direction: column;

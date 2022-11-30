@@ -1,23 +1,17 @@
-import { Link } from "react-router-dom"
 import { Container } from "../../components/Form/style"
 import FormRegister from "../../components/FormRegister"
-import { TitleDiv } from "../../styles/title"
-
-
+import Header from "../../components/Header"
 
 const RegisterPage = () => {
 
-
     return (
       <Container>
-        <TitleDiv>
-          <h2>Kenzie Hub</h2>
-           <Link to="/" >Voltar</Link>
-        </TitleDiv>
+        <Header route="/" page="register">
+            Voltar
+        </Header>
         <FormRegister />
       </Container>
     )
 }
-
 
 export default RegisterPage

@@ -1,10 +1,7 @@
 import Form from "../../components/Form"
 import { TitleStyled } from '../../styles/title'
 
-
- 
 const LoginPage = () => {
-  
 
     return (
        <div>
@@ -13,6 +10,5 @@ const LoginPage = () => {
        </div>
     )
 }
-
 
 export default LoginPage

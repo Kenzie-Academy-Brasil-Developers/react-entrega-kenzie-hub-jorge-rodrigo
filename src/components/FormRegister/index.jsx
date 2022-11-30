@@ -13,6 +13,7 @@ import { FormDivStyledRegister,FormStyled,Container } from "../Form/style";
 
 const FormRegister = () => {
 
+    const [loadingOn, setLoadingOn ] = useState(false)
     const [userRegister, setUserRegister ] = useState('')
     const navigate = useNavigate()
     useEffect(()=> {
@@ -25,9 +26,9 @@ const FormRegister = () => {
              },3000)
           }catch(err){
             apiErrorRegister()
+            setLoadingOn(false)
           }
         }
-
         if(userRegister !== ''){
             getApi()
         }
@@ -37,10 +38,11 @@ const FormRegister = () => {
         name: yup.string().required("Nome Obrigatorio"),
         email: yup.string().required("Email Obrigatorio").email("Coloque um email Valido"),
         password: yup.string().required("Senha Obrigatoria")
-        .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-        "A Senha deve conter minimo 8 Characters, 1 letra maiúscula, 1 letra minúscula, 1 número e 1 Character especial"
-        ),
+        .min(8,"Precisa ter no Minino 8 Caracteres")
+        .matches(/(?=.*?[A-Z])/,"Precisa ter pelo menos 1 letra Maiúscula")
+        .matches(/(?=.*?[a-z])/,"Precisa ter pelo menos 1 letra Minúscula" )
+        .matches(/(?=.*?[0-9])/, "Precisa ter pelo menos 1 Número")
+        .matches(/(?=.*?[#?!@$%^&*-])/, "Precisa ter pelo menos 1 Caracter especial"),
         passwordValidate: yup.string().oneOf([yup.ref('password'),null], 'Senha precisa ser igual').required("Campo Obrigatorio"),
         bio: yup.string().required("Bio Obrigatorio"),
         contact: yup.string().required("Contato Obrigatorio"),
@@ -60,9 +62,9 @@ const FormRegister = () => {
             course_module: data.course_module,
         }
         setUserRegister(body)
+        setLoadingOn(true)
       }
     
-
     return(
         <Container>
         <FormDivStyledRegister>
@@ -71,22 +73,28 @@ const FormRegister = () => {
           <FormStyled onSubmit={handleSubmit(onHandleSubmitRegister)}>
             <label htmlFor="name">Nome</label>
             <input type="text"  placeholder="Digite seu name" id="name" {...register("name")} />
-            {errors.name? <span>{errors.name.message}</span>: <></>}
+            {errors.name?.message && <span aria-errormessage={errors.name.message}>{errors.name.message}</span>}
+
             <label htmlFor="email">Email</label>
             <input type="email"  placeholder="Digite seu email" id="email" {...register("email")} />
-            {errors.email? <span>{errors.email.message}</span>: <></>}
+            {errors.email?.message && <span aria-errormessage={errors.email.message} >{errors.email.message}</span>}
+
             <label htmlFor="password">Senha</label>
             <input type="password"  placeholder="Digite sua senha" id="password" {...register("password")} />
-            {errors.password? <span>{errors.password.message}</span>: <></>}
+            {errors.password?.message && <span aria-errormessage={errors.password.message}>{errors.password.message}</span>}
+
             <label htmlFor="passwordValidate">Confirme sua senha</label>
             <input type="password"  placeholder="Digite seu password" id="passwordValidate" {...register("passwordValidate")} />
-            {errors.passwordValidate? <span>{errors.passwordValidate.message}</span>: <></>}
+            {errors.passwordValidate?.message && <span aria-errormessage={errors.passwordValidate.message} >{errors.passwordValidate.message}</span>}
+
             <label htmlFor="bio">Escreva sobre voce</label>
             <input type="text"  placeholder="Digite um pouco sobre voce" id="bio" {...register("bio")} />
-            {errors.bio? <span>{errors.bio.message}</span>: <></>}
+            {errors.bio?.message  &&<span aria-errormessage={errors.bio.message} >{errors.bio.message}</span>}
+
             <label htmlFor="contact">Contato</label>
             <input type="text"  placeholder="Coloque uma opção de contato" id="contact" {...register("contact")} />
-            {errors.contact? <span>{errors.contact.message}</span>: <></>}
+            {errors.contact?.message && <span aria-errormessage={errors.contact.message} >{errors.contact.message}</span>}
+
             <label htmlFor="course_module">Módulo</label>
             <select id="course_module" {...register("course_module")}>
               <option value="null" defaultValue hidden>Selecione o Módulo</option>
@@ -95,8 +103,10 @@ const FormRegister = () => {
               <option value="Terceiro módulo (Introdução ao Backend)">Terceiro módulo (Introdução ao Backend)</option>
               <option value="Quarto módulo (Backend Avançado)">Quarto módulo (Backend Avançado)</option>
             </select>
-            {errors.course_module? <span>{errors.course_module.message}</span>: <></>}
-            <Button>Cadastrar</Button>
+            {errors.course_module?.message &&<span aria-errormessage={errors.course_module.message} >{errors.course_module.message}</span>}
+
+            {loadingOn && <Button><img src={Loading} alt="Loading" /></Button>}
+            {!loadingOn && <Button>Cadastrar</Button>}
           </FormStyled>
         </FormDivStyledRegister>
         <ToastContainer />

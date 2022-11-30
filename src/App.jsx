@@ -1,8 +1,7 @@
 import { Route, Routes } from "react-router-dom";
+import DashboardPage from "./pages/dashboard";
 import LoginPage from "./pages/login";
 import RegisterPage from "./pages/register";
-
-
 
 const App = () => {
   return (
@@ -10,7 +9,7 @@ const App = () => {
        <Routes>
          <Route path="/" element={ <LoginPage /> } />
          <Route path="/register" element={ <RegisterPage /> }/>
-         <Route path="/dashboard/:id" element={ <p>teste 3</p> }/>
+         <Route path="/dashboard/:id" element={ <DashboardPage /> }/>
        </Routes>
     </div>
   );

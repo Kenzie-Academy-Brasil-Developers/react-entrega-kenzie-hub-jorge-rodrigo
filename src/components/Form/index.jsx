@@ -50,7 +50,6 @@ const Form = () => {
     setLoadingOn(true)
   }
 
-
     return (
       <Container>
       <FormDivStyled>
@@ -72,6 +71,5 @@ const Form = () => {
     </Container>
     )
 }
-
 
 export default Form
