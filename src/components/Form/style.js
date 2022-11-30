@@ -49,6 +49,14 @@ export const FormDivStyled = styled.div`
    }
 `
 
+export const FormDivStyledRegister = styled(FormDivStyled)`
+   height: 650px;
+   margin-bottom: 20px;
+   @media(min-width:750px){
+      height: 850px;
+   }
+`
+
 export const Container = styled.div`
     @media(min-width:750px){
         max-width: 1000px;
@@ -81,6 +89,19 @@ export const FormStyled = styled.form`
       outline: 0;
       border: 1px solid var(--color-grey-3);
       border-radius: 5px;
+      color: var(--color-grey-2);
+   }
+
+   select{
+      width: 99%;
+      height: 38px;
+      margin-bottom: 8px;
+      padding: 4px;
+      background-color: var(--color-grey-3);
+      outline: 0;
+      border: 1px solid var(--color-grey-3);
+      border-radius: 5px;
+      color: var(--color-grey-2);
    }
 
    span{
