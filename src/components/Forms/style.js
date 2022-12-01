@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+
+
 export const FormDivStyled = styled.div`
    background-color: var(--color-grey-4);
    margin: 0 auto;
@@ -49,6 +51,7 @@ export const FormDivStyled = styled.div`
    }
 `
 
+
 export const FormDivStyledRegister = styled(FormDivStyled)`
    height: 650px;
    margin-bottom: 20px;
@@ -56,40 +59,24 @@ export const FormDivStyledRegister = styled(FormDivStyled)`
       height: 850px;
    }
 `
-export const Container = styled.div`
-    @media(min-width:750px){
-        max-width: 1000px;
-        margin: 0 auto;
-    }
-`
-export const FormStyled = styled.form`
+
+export const FormsStyled = styled.form`
    display: flex;
    flex-direction: column;
    background-color: transparent;
    padding: 10px;
+   gap: 5px;
 
    label{
-    background-color: transparent;
-    color: var(--color-grey-1);
-    font-size: 9px;
-    padding-bottom: 10px;
-    @media(min-width:750px){
-     font-size: 14px;
-   }
-   }
-
-   input{
-      width: 99%;
-      height: 38px;
-      margin-bottom: 8px;
-      padding: 4px;
-      background-color: var(--color-grey-3);
-      outline: 0;
-      border: 1px solid var(--color-grey-3);
-      border-radius: 5px;
-      color: var(--color-grey-2);
-   }
-
+       background-color: transparent;
+       color: var(--color-grey-1);
+       font-size: 9px;
+       padding-bottom: 5px;
+       @media(min-width:750px){
+       font-size: 14px;
+       }
+    }
+  
    select{
       width: 99%;
       height: 38px;
@@ -102,9 +89,10 @@ export const FormStyled = styled.form`
       color: var(--color-grey-2);
    }
 
-   span{
-     background-color: transparent;
-     color: var(--color-negative);
-     padding-bottom: 10px;
+
+  span{
+    background-color: transparent;
+    color: var(--color-negative);
+    padding-bottom: 4px;
    }
 `
