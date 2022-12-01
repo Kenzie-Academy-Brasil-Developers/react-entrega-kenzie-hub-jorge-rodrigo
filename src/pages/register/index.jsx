@@ -3,58 +3,29 @@ import { Container } from "../../styles/Container"
 import Forms from "../../components/Forms"
 import { FormDivStyledRegister } from "../../components/Forms/style"
 import { useEffect, useState } from "react"
-import * as yup from 'yup';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import Button from "../../components/Button"
 import { useNavigate } from "react-router-dom"
 import Loading from '../../assets/loading-gif-transparent-background.gif'
-import { api } from "../../services/api";
-import { apiErrorRegister, apiSucessRegister } from "../../services/toastfy";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Input from "../../components/Input"
-
-
-
+import { formSchema } from "./registerSchema"
+import { getApi } from "./registerRequest"
 
 const RegisterPage = () => {
 
   const [loadingOn, setLoadingOn ] = useState(false)
-  const [userRegister, setUserRegister ] = useState('')
+  const [userRegister, setUserRegister ] = useState(null)
   const navigate = useNavigate()
   useEffect(()=> {
-      async function getApi() {
-        try{
-           const response = await api.post("/users",userRegister)
-           apiSucessRegister()
-           setTimeout(() => {
-             navigate("/")
-           },3000)
-        }catch(err){
-          apiErrorRegister()
-          setLoadingOn(false)
-        }
-      }
-      if(userRegister !== ''){
-          getApi()
+      if(userRegister !== null){
+          getApi(userRegister,setLoadingOn,navigate)
       }
   }, [userRegister,navigate])
 
-  const formSchema = yup.object().shape({
-      name: yup.string().required("Nome Obrigatorio"),
-      email: yup.string().required("Email Obrigatorio").email("Coloque um email Valido"),
-      password: yup.string().required("Senha Obrigatoria")
-      .min(8,"Precisa ter no Minino 8 Caracteres")
-      .matches(/(?=.*?[A-Z])/,"Precisa ter pelo menos 1 letra Maiúscula")
-      .matches(/(?=.*?[a-z])/,"Precisa ter pelo menos 1 letra Minúscula" )
-      .matches(/(?=.*?[0-9])/, "Precisa ter pelo menos 1 Número")
-      .matches(/(?=.*?[#?!@$%^&*-])/, "Precisa ter pelo menos 1 Caracter especial"),
-      passwordValidate: yup.string().oneOf([yup.ref('password'),null], 'Senha precisa ser igual').required("Campo Obrigatorio"),
-      bio: yup.string().required("Bio Obrigatorio"),
-      contact: yup.string().required("Contato Obrigatorio"),
-      course_module :yup.string().required("Módulo Obrigatorio"),
-    }) 
+   
     const { register,handleSubmit,formState: { errors } } = useForm({
       resolver: yupResolver(formSchema)
     })

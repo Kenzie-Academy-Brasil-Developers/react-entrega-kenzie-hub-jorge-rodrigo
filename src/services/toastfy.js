@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 
-export const apiSucessLogin = () => {
+export const notifySucessLogin = () => {
     toast.success('Login realizado com Sucesso', {
         position: "top-right",
         autoClose: 2000,
@@ -13,7 +13,7 @@ export const apiSucessLogin = () => {
         });
 }
 
-export const apiSucessRegister = () => {
+export const notifySucessRegister = () => {
     toast.success('Cadastro realizado com Sucesso', {
         position: "top-right",
         autoClose: 2000,
@@ -26,7 +26,7 @@ export const apiSucessRegister = () => {
         });
 }
 
-export const apiErrorRegister = () => {
+export const notifyErrorRegister = () => {
     toast.error('Algo deu errado, conta ja existente', {
         position: "top-right",
         autoClose: 2000,
@@ -39,7 +39,7 @@ export const apiErrorRegister = () => {
         });
 }
 
-export const apiErrorLogin = () => {
+export const notifyErrorLogin = () => {
     toast.error('email ou senha incorreto', {
         position: "top-right",
         autoClose: 2000,

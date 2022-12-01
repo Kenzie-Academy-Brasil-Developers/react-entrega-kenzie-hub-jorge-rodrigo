@@ -56,7 +56,7 @@ export const FormDivStyledRegister = styled(FormDivStyled)`
    height: 650px;
    margin-bottom: 20px;
    @media(min-width:750px){
-      height: 850px;
+      height: 750px;
    }
 `
 
