@@ -8,6 +8,14 @@ export const ButtonStyled = styled.button`
     border: 1px solid var(--color-primary);
     margin: 10px 0;
     color: var(--color-grey-1);
+    transition: 0.8s;
+    position: relative;
+    overflow: hidden;
+
+    :hover{
+        background-color:  var(--color-primary-focus);
+    }
+   
 
     img{
         width: 10%;

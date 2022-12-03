@@ -6,8 +6,8 @@ export const FormDivStyled = styled.div`
    background-color: var(--color-grey-4);
    margin: 0 auto;
    width: 90%;
-   height: 439px;
    border-radius: 5px;
+   padding: 0 0 30px 0;
 
    @media(min-width:750px){
      width: 35%;
@@ -48,16 +48,18 @@ export const FormDivStyled = styled.div`
     border-radius: 5px;
     color: var(--color-grey-1);
     background-color: var(--color-grey-2);
+    transition: .8s;
+
+    :hover{
+      background-color: var(--color-grey-3);
+    }
    }
-`
+` 
 
 
 export const FormDivStyledRegister = styled(FormDivStyled)`
-   height: 650px;
+   padding: 0 0 30px 0;
    margin-bottom: 20px;
-   @media(min-width:750px){
-      height: 750px;
-   }
 `
 
 export const FormsStyled = styled.form`

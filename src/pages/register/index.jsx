@@ -13,6 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Input from "../../components/Input"
 import { formSchema } from "./registerSchema"
 import { getApi } from "./registerRequest"
+import { motion } from "framer-motion"
 
 const RegisterPage = () => {
 
@@ -41,7 +42,7 @@ const RegisterPage = () => {
       }
       setUserRegister(body)
       setLoadingOn(true)
-    }
+    } 
 
     return (
       <Container>
@@ -49,10 +50,11 @@ const RegisterPage = () => {
             Voltar
         </Header>
         <Container>
-        <FormDivStyledRegister>
-          <h2>Crie sua conta!</h2>
-          <p>Rapido e grátis, vamos nessa</p>
-          <Forms onSub={handleSubmit(onHandleSubmitRegister)}>
+         <motion.div animate={{x:0,scale:1}} initial={{x: -100,scale:0.5}} >
+          <FormDivStyledRegister>
+           <h2>Crie sua conta!</h2>
+           <p>Rapido e grátis, vamos nessa</p>
+           <Forms onSub={handleSubmit(onHandleSubmitRegister)}>
            
             <Input label={"Nome"} type={"text"} placeholder={"Digite seu name"} id={"name"} register={register("name")} />
             {errors.name?.message && <span aria-errormessage={errors.name.message}>{errors.name.message}</span>}
@@ -72,20 +74,21 @@ const RegisterPage = () => {
             <Input label={"Contato"} type={"text"} placeholder={"Coloque uma opção de contato"} id={"contact"} register={register("contact")} />
             {errors.contact?.message && <span aria-errormessage={errors.contact.message} >{errors.contact.message}</span>}
 
-            <label htmlFor="course_module">Módulo</label>
-            <select id="course_module" {...register("course_module")}>
-              <option value="null" defaultValue hidden>Selecione o Módulo</option>
-              <option value="Primeiro módulo (Introdução ao Frontend)">Primeiro módulo (Introdução ao Frontend)</option>
-              <option value="Segundo módulo (Frontend Avançado)">Segundo módulo (Frontend Avançado)</option>
-              <option value="Terceiro módulo (Introdução ao Backend)">Terceiro módulo (Introdução ao Backend)</option>
-              <option value="Quarto módulo (Backend Avançado)">Quarto módulo (Backend Avançado)</option>
-            </select>
-            {errors.course_module?.message &&<span aria-errormessage={errors.course_module.message} >{errors.course_module.message}</span>}
+             <label htmlFor="course_module">Módulo</label>
+             <select id="course_module" {...register("course_module")}>
+               <option value="null" defaultValue hidden>Selecione o Módulo</option>
+               <option value="Primeiro módulo (Introdução ao Frontend)">Primeiro módulo (Introdução ao Frontend)</option>
+               <option value="Segundo módulo (Frontend Avançado)">Segundo módulo (Frontend Avançado)</option>
+               <option value="Terceiro módulo (Introdução ao Backend)">Terceiro módulo (Introdução ao Backend)</option>
+               <option value="Quarto módulo (Backend Avançado)">Quarto módulo (Backend Avançado)</option>
+             </select>
+             {errors.course_module?.message &&<span aria-errormessage={errors.course_module.message} >{errors.course_module.message}</span>}
 
-            {loadingOn && <Button><img src={Loading} alt="Loading" /></Button>}
-            {!loadingOn && <Button>Cadastrar</Button>}
-          </Forms>
-        </FormDivStyledRegister>
+             {loadingOn && <Button><img src={Loading} alt="Loading" /></Button>}
+             {!loadingOn && <Button type={"submit"} disable={loadingOn}>Cadastrar</Button>}
+            </Forms>
+           </FormDivStyledRegister>
+         </motion.div>
         <ToastContainer />
       </Container>
       </Container>

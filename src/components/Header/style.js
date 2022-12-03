@@ -51,9 +51,15 @@ a{
    font-size: 12px;
    color: var(--color-grey-1);
    background-color: var(--color-grey-4);
+   transition: .8s;
    @media(min-width:750px){
      font-size:16px;
      padding: 8px 30px;
+   }
+
+
+   :hover{
+    background-color: var(--color-grey-3);
    }
 }
 `

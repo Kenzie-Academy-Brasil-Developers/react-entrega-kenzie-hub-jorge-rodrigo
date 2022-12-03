@@ -13,6 +13,7 @@ import { Container } from "../../styles/Container";
 import Input from "../../components/Input";
 import { formSchema } from "./loginSchema";
 import { getApi } from "./loginRequest";
+import { motion } from "framer-motion";
 
 const LoginPage = () => {
 
@@ -25,18 +26,20 @@ const LoginPage = () => {
        getApi(user,setLoadingOn,navigate)
      }
    }, [ user,navigate ])
-   const { register,handleSubmit,formState: { errors } } = useForm({
+   const { register,handleSubmit,formState: { errors }, reset } = useForm({
      resolver: yupResolver(formSchema)
    })
    const onHandleSubmit = (data) => { 
      setUser(data)
      setLoadingOn(true)
+     reset()
    }
-
+  
     return (
        <div>
          <TitleStyled>Kenzie Hub</TitleStyled>
          <Container>
+           <motion.div  animate={{x:0,scale:1}} initial={{x: -100,scale:0.5}}> 
             <FormDivStyled>
             <h2>Login</h2>
             <Forms onSub={handleSubmit(onHandleSubmit)} >
@@ -48,12 +51,13 @@ const LoginPage = () => {
               {errors.password? <span>{errors.password.message}</span>: <></>}
 
               {loadingOn && <Button><img src={Loading} alt="Loading" /></Button>}
-              {!loadingOn && <Button>Entrar</Button>}
-           </Forms>
-           <p>Ainda não possui uma conta?</p>
-           <Link to="/register">Cadastre-se</Link>
-           </FormDivStyled>
-           <ToastContainer/>
+              {!loadingOn && <Button type={"submit"} disable={loadingOn}>Entrar</Button>}
+            </Forms>
+            <p>Ainda não possui uma conta?</p>
+            <Link to="/register">Cadastre-se</Link>
+            </FormDivStyled>
+            <ToastContainer/>
+           </motion.div>
          </Container>
        </div>
     )
