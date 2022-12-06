@@ -4,7 +4,7 @@ import { InputStyled } from "./style"
 
 const Input = ( {label,type,placeholder,id,register} ) => {
 
-
+ 
 
     return (
         <InputStyled>

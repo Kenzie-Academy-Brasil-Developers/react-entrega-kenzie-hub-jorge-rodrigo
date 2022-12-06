@@ -2,29 +2,28 @@ import Header from "../../components/Header"
 import { Container } from "../../styles/Container"
 import Forms from "../../components/Forms"
 import { FormDivStyledRegister } from "../../components/Forms/style"
-import { useEffect, useState } from "react"
+import { useEffect,useContext } from "react"
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import Button from "../../components/Button"
-import { useNavigate } from "react-router-dom"
 import Loading from '../../assets/loading-gif-transparent-background.gif'
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Input from "../../components/Input"
 import { formSchema } from "./registerSchema"
-import { getApi } from "./registerRequest"
 import { motion } from "framer-motion"
+import { UserContext } from "../../contexts/UserContext"
 
 const RegisterPage = () => {
 
-  const [loadingOn, setLoadingOn ] = useState(false)
-  const [userRegister, setUserRegister ] = useState(null)
-  const navigate = useNavigate()
+  const {loading,setLoading,user,setUser,getApiRegister } = useContext(UserContext)
+
+ 
   useEffect(()=> {
-      if(userRegister !== null){
-          getApi(userRegister,setLoadingOn,navigate)
+      if(user !== null){
+        getApiRegister(user,setLoading)
       }
-  }, [userRegister,navigate])
+  }, [getApiRegister,user,setLoading])
 
    
     const { register,handleSubmit,formState: { errors } } = useForm({
@@ -40,8 +39,8 @@ const RegisterPage = () => {
           contact: data.contact,
           course_module: data.course_module,
       }
-      setUserRegister(body)
-      setLoadingOn(true)
+      setUser(body)
+      setLoading(true)
     } 
 
     return (
@@ -84,8 +83,8 @@ const RegisterPage = () => {
              </select>
              {errors.course_module?.message &&<span aria-errormessage={errors.course_module.message} >{errors.course_module.message}</span>}
 
-             {loadingOn && <Button><img src={Loading} alt="Loading" /></Button>}
-             {!loadingOn && <Button type={"submit"} disable={loadingOn}>Cadastrar</Button>}
+             {loading && <Button><img src={Loading} alt="Loading" /></Button>}
+             {!loading && <Button type={"submit"} disable={loading}>Cadastrar</Button>}
             </Forms>
            </FormDivStyledRegister>
          </motion.div>

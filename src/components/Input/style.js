@@ -22,7 +22,7 @@ export const InputStyled = styled.fieldset`
       height: 38px;
       margin-bottom: 8px;
       margin-top: 4px;
-      padding: 2px;
+      padding: 10px;
       background-color: var(--color-grey-3);
       outline: 0;
       border: 1px solid var(--color-grey-3);

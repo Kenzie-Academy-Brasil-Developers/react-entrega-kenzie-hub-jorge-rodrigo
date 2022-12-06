@@ -1,39 +1,50 @@
-import { useEffect, useState } from "react"
+import { useContext,useState } from "react"
+import { Navigate } from "react-router-dom"
 import Header from "../../components/Header"
-import { api } from "../../services/api"
-import { Container, HeaderDivStyled, InfoDivStyled } from "./style"
+import Modal from "../../components/Modal"
+import { UserContext } from "../../contexts/UserContext"
+import { Container, HeaderDivStyled, InfoDivStyled, TechDivStyled } from "./style"
 
 const DashboardPage = () => {
 
-    const [userLogged, setUserLogged ] = useState('')
-    const token = JSON.parse(localStorage.getItem("@TOKEN"))   
-    useEffect(()=>{
-        async function getApi() {
-            const response = await api.get("/profile", {
-                headers: {
-                    'Authorization': `token ${token}`
-                  }
-            })
-            setUserLogged(response.data)
-        }
-        getApi()
-    }, [token,userLogged])
+    
+   const { user,loadingPage} = useContext(UserContext)
+   const [modalOn,setModalOn] = useState(false)
 
-    return (
+   if(loadingPage){
+     return null
+   }
+
+   return (
+     <>
+      {user ?     
+      <div>
+        {modalOn &&  <Modal setOn={ setModalOn }/>}
+        <HeaderDivStyled>
+            <Header route="/" page="dashboard">
+                Sair
+            </Header> 
+        </HeaderDivStyled>
+        <InfoDivStyled>
+           <Container>
+              <h2>Olá, {user!== null && user.name}</h2>
+              <p>{user!== null && user.course_module}</p>
+           </Container>
+        </InfoDivStyled>
         <div>
-            <HeaderDivStyled>
-                <Header route="/" page="dashboard">
-                    Sair
-                </Header> 
-            </HeaderDivStyled>
-            <InfoDivStyled>
-               <Container>
-                  <h2>Olá, {userLogged.name}</h2>
-                  <p>{userLogged.course_module}</p>
-               </Container>
-            </InfoDivStyled>
+            <TechDivStyled>
+                <h2>Tecnologias</h2>
+                <button onClick={ ()=> setModalOn(true)}>+</button>
+            </TechDivStyled>
         </div>
-    )
+      </div>
+      :
+       <Navigate to="/" />
+      }
+     </> 
+)
+
+   
 } 
 
 export default DashboardPage

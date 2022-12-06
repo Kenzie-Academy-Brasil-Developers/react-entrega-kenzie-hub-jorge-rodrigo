@@ -36,3 +36,28 @@ export const InfoDivStyled = styled.div`
       font-size: 14px;
    }
 `
+
+
+export const TechDivStyled = styled.div`
+   display: flex;
+   justify-content: space-between;
+   padding: 20px 15px;
+   
+   
+
+   h2{
+     color: var(--color-grey-1);
+     padding-top: 5px;
+     font-size: 16px;
+   }
+
+   button{
+      height: 28px;
+      width: 32px;
+      text-align: center;
+      background-color: var(--color-grey-4);
+      color: var(--color-grey-1);
+      border: none;
+      border-radius: 4px;
+   }
+`
