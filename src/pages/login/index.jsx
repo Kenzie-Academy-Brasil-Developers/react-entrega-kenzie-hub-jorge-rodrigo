@@ -17,9 +17,13 @@ import { UserContext } from "../../contexts/UserContext";
 
 const LoginPage = () => {
 
-  const {user,setUser,loading,setLoading,getApiLogin } = useContext(UserContext)
-
- 
+  const {user,setUser,loading,setLoading,getApiLogin,navigate } = useContext(UserContext)
+  const token = JSON.parse(localStorage.getItem("@TOKEN"))  
+  const id = JSON.parse(localStorage.getItem("@USERID"))  
+  
+  if(token){
+     navigate(`/dashboard/${id}`)
+  }
    useEffect(()=> {
      if(user !== null){
        getApiLogin(user,setLoading)

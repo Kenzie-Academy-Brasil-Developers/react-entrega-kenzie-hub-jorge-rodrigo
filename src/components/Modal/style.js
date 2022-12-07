@@ -9,10 +9,10 @@ export const ModalBackground = styled.div`
 export const ModalDivStyled = styled.div`
     background-color: var(--color-grey-4);
     width: 90%;
-    height: 294px;
     position: fixed;
     margin-top: 150px;
     border-radius: 4px;
+    padding-bottom: 25px;
 
     div{
       background-color: var(--color-grey-3);

@@ -75,6 +75,7 @@ export const UserProvider = ({ children }) => {
             getApiRegister,
             getApiLogin,
             loadingPage,
+            navigate
             }}>
             { children }
         </UserContext.Provider>
