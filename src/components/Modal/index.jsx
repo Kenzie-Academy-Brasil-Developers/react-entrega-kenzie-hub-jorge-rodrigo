@@ -20,6 +20,7 @@ const Modal = ({ setOn,title,children }) => {
     
       const onHandleSubmitTech = (data) => {
           getTech(data)
+          setOn(false)
       } 
 
     

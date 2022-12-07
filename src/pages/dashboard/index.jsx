@@ -2,7 +2,8 @@ import { useContext,useState } from "react"
 import { Navigate } from "react-router-dom"
 import Header from "../../components/Header"
 import Modal from "../../components/Modal"
-import { TechProvider } from "../../contexts/TechContext"
+import TechList from "../../components/TechList"
+import {  TechProvider } from "../../contexts/TechContext"
 import { UserContext } from "../../contexts/UserContext"
 import { Container, HeaderDivStyled, InfoDivStyled, TechDivStyled } from "./style"
 
@@ -11,7 +12,7 @@ const DashboardPage = () => {
     
    const { user,loadingPage} = useContext(UserContext)
    const [modalOn,setModalOn] = useState(false)
-  
+   
    if(loadingPage){
      return null
    }
@@ -36,6 +37,7 @@ const DashboardPage = () => {
                 <h2>Tecnologias</h2>
                 <button onClick={ ()=> setModalOn(true)}>+</button>
             </TechDivStyled>
+            <TechList />
         </div>
       </div>
       :
