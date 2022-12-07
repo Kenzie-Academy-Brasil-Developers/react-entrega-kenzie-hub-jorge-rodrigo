@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
 import { notifyErrorLogin, notifyErrorRegister, notifySucessLogin, notifySucessRegister } from "../services/toastfy";
 
-export const UserContext = createContext({}) 
+export const UserContext = createContext({})  
 
 export const UserProvider = ({ children }) => {
      const [ user, setUser ] = useState(null)
