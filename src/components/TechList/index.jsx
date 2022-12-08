@@ -1,4 +1,5 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
+import { Navigate } from "react-router-dom"
 import { TechContext } from "../../contexts/TechContext"
 import Modal from "../Modal"
 import { TechListStyled } from "./style"
@@ -6,9 +7,7 @@ import { TechListStyled } from "./style"
 const TechList = () => {
     const { tech } = useContext(TechContext)
     const [ modalOn, setModalOn ] = useState(false)
-    const [item, setItem ] = useState(null)
-    
-
+    const [item, setItem ] = useState(null) 
     const openModal = (data) => {
         setItem(data)
         setModalOn(true)

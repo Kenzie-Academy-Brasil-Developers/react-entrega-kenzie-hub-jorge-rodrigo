@@ -13,23 +13,20 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const DashboardPage = () => {
     
-   const { user,loadingPage,navigate,setLoading} = useContext(UserContext)
+   const { user,navigate,setLoading} = useContext(UserContext)
    const [modalOn,setModalOn] = useState(false)
    const token = JSON.parse(localStorage.getItem("@TOKEN")) 
 
    useEffect(()=> {
       if(!token){
-         navigate('/')
          setLoading(false)
+         navigate('/')
       }
    },[navigate,token,setLoading])
    
-   if(loadingPage){
-     return null
-   }
+
    return (
-     <TechProvider>
-      {user ?     
+     <TechProvider>    
       <div>
         <HeaderDivStyled>
             <Header route="/" page="dashboard">
@@ -52,9 +49,6 @@ const DashboardPage = () => {
         </div>
         <ToastContainer />
       </div>
-      :
-       <Navigate to="/" />
-      }
      </TechProvider> 
 )
 
