@@ -1,6 +1,5 @@
 import { useEffect } from "react"
 import { useContext,useState } from "react"
-import { Navigate } from "react-router-dom"
 import Header from "../../components/Header"
 import Modal from "../../components/Modal"
 import TechList from "../../components/TechList"

@@ -1,5 +1,4 @@
-import { useContext, useEffect, useState } from "react"
-import { Navigate } from "react-router-dom"
+import { useContext, useState } from "react"
 import { TechContext } from "../../contexts/TechContext"
 import Modal from "../Modal"
 import { TechListStyled } from "./style"
