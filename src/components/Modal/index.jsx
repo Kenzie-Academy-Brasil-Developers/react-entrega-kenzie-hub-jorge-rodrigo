@@ -70,8 +70,7 @@ const Modal = ({ setOn,title,detail}) => {
                <option value="Avançado">Avançado</option>
               </select>
               {err.status?.message &&<span aria-errormessage={err.status.message} >{err.status.message}</span>}
- 
-              
+     
                <div>
                    <button type={"submit"}>
                         Salvar Alterações

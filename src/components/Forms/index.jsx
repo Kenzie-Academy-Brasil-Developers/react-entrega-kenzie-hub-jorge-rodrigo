@@ -1,8 +1,6 @@
 import { FormsStyled } from "./style"
 
-
 const Forms = ({children,onSub} ) => {
-  
 
     return (
         <FormsStyled onSubmit={onSub}>
@@ -10,6 +8,5 @@ const Forms = ({children,onSub} ) => {
         </FormsStyled>
     )
 }
-
 
 export default Forms

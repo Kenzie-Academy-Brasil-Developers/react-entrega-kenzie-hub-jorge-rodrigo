@@ -25,7 +25,6 @@ export const UserProvider = ({ children }) => {
             setUser(data)
           }catch(err){
             localStorage.clear()
-            console.error(err)
           }finally{
             setLoadingPage(false)
           }

@@ -5,10 +5,10 @@ export const ButtonStyled = styled.button`
     width: 100%;
     height: 38px;
     background-color: var(--color-primary);
-    border-radius: 5px;
     border: 1px solid var(--color-primary);
-    margin: 10px 0;
     color: var(--color-grey-1);
+    margin: 10px 0;
+    border-radius: 5px;
     transition: 0.8s;
     position: relative;
     overflow: hidden;
@@ -17,7 +17,6 @@ export const ButtonStyled = styled.button`
         background-color:  var(--color-primary-focus);
     }
    
-
     img{
         width: 10%;
         height: 85%;

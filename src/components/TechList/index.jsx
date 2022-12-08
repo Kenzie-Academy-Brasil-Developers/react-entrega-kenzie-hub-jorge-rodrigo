@@ -3,8 +3,6 @@ import { TechContext } from "../../contexts/TechContext"
 import Modal from "../Modal"
 import { TechListStyled } from "./style"
  
-
-
 const TechList = () => {
     const { tech } = useContext(TechContext)
     const [ modalOn, setModalOn ] = useState(false)
