@@ -13,5 +13,7 @@ export const formSchema = yup.object().shape({
     passwordValidate: yup.string().oneOf([yup.ref('password'),null], 'Senha precisa ser igual').required("Campo Obrigatorio"),
     bio: yup.string().required("Bio Obrigatorio"),
     contact: yup.string().required("Contato Obrigatorio"),
-    course_module :yup.string().required("Módulo Obrigatorio"),
+    course_module :yup.string()
+    .oneOf(["Primeiro módulo (Introdução ao Frontend)","Segundo módulo (Frontend Avançado)","Terceiro módulo (Introdução ao Backend)","Quarto módulo (Backend Avançado)"],"Escolha uma opção")
+    .required("Módulo Obrigatorio"), 
   }) 

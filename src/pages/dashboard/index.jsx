@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { useContext,useState } from "react"
 import { Navigate } from "react-router-dom"
 import Header from "../../components/Header"
@@ -6,12 +7,22 @@ import TechList from "../../components/TechList"
 import {  TechProvider } from "../../contexts/TechContext"
 import { UserContext } from "../../contexts/UserContext"
 import { Container, HeaderDivStyled, InfoDivStyled, TechDivStyled } from "./style"
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const DashboardPage = () => {
     
-   const { user,loadingPage} = useContext(UserContext)
+   const { user,loadingPage,navigate,setLoading} = useContext(UserContext)
    const [modalOn,setModalOn] = useState(false)
+   const token = JSON.parse(localStorage.getItem("@TOKEN")) 
+
+   useEffect(()=> {
+      if(!token){
+         navigate('/')
+         setLoading(false)
+      }
+   },[navigate,token,setLoading])
    
    if(loadingPage){
      return null
@@ -20,7 +31,6 @@ const DashboardPage = () => {
      <TechProvider>
       {user ?     
       <div>
-        {modalOn &&  <Modal setOn={ setModalOn } title={"Cadastrar Tecnologia"}/>}
         <HeaderDivStyled>
             <Header route="/" page="dashboard">
                 Sair
@@ -37,8 +47,10 @@ const DashboardPage = () => {
                 <h2>Tecnologias</h2>
                 <button onClick={ ()=> setModalOn(true)}>+</button>
             </TechDivStyled>
+            {modalOn &&  <Modal setOn={ setModalOn } title={"Cadastrar Tecnologia"}/>}
             <TechList />
         </div>
+        <ToastContainer />
       </div>
       :
        <Navigate to="/" />

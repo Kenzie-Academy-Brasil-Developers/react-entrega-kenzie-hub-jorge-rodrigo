@@ -1,15 +1,31 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { TechContext } from "../../contexts/TechContext"
-
+import Modal from "../Modal"
+import { TechListStyled } from "./style"
+ 
 
 
 const TechList = () => {
     const { tech } = useContext(TechContext)
+    const [ modalOn, setModalOn ] = useState(false)
+    const [item, setItem ] = useState(null)
+    
+
+    const openModal = (data) => {
+        setItem(data)
+        setModalOn(true)
+    }
 
     return (
-        <div>
-            {tech ? tech.map((item)=> <div key={item.id}>{item.title}</div>): <></>}
-        </div>
+        <>
+          {modalOn && <Modal setOn={ setModalOn } title={"Tecnologia Detalhes"} detail={item}/>}
+          {tech ? <TechListStyled>
+            {tech.map((item)=> <li onClick={()=> openModal(item)} key={item.id}>
+                <h2>{item.title}</h2>
+                <p>{item.status}</p> 
+            </li>)}
+        </TechListStyled>: <></> }
+        </>
     )
 }
 

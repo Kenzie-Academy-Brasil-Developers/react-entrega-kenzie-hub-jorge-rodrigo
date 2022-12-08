@@ -17,23 +17,21 @@ import { UserContext } from "../../contexts/UserContext";
 
 const LoginPage = () => {
 
-  const {user,setUser,loading,setLoading,getApiLogin,navigate } = useContext(UserContext)
+  const { loading,setLoading,getApiLogin,navigate } = useContext(UserContext)
   const token = JSON.parse(localStorage.getItem("@TOKEN"))  
   const id = JSON.parse(localStorage.getItem("@USERID"))  
-  
-  if(token){
-     navigate(`/dashboard/${id}`)
-  }
+
    useEffect(()=> {
-     if(user !== null){
-       getApiLogin(user,setLoading)
-     }
-   }, [ getApiLogin,user,setLoading])
+    if(token){
+      navigate(`/dashboard/${id}`, { replace: true})
+    } 
+
+   }, [id,navigate,token])
    const { register,handleSubmit,formState: { errors }, reset } = useForm({
      resolver: yupResolver(formSchema)
    })
    const onHandleSubmit = (data) => { 
-     setUser(data)
+    getApiLogin(data)
      setLoading(true)
      reset()
    }

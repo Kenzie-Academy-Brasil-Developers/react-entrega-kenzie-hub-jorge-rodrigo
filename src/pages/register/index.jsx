@@ -16,14 +16,8 @@ import { UserContext } from "../../contexts/UserContext"
 
 const RegisterPage = () => {
 
-  const {loading,setLoading,user,setUser,getApiRegister } = useContext(UserContext)
+  const {loading,setLoading,getApiRegister } = useContext(UserContext)
 
- 
-  useEffect(()=> {
-      if(user !== null){
-        getApiRegister(user,setLoading)
-      }
-  }, [getApiRegister,user,setLoading])
 
    
     const { register,handleSubmit,formState: { errors } } = useForm({
@@ -39,7 +33,7 @@ const RegisterPage = () => {
           contact: data.contact,
           course_module: data.course_module,
       }
-      setUser(body)
+      getApiRegister(body)
       setLoading(true)
     } 
 

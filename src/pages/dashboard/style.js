@@ -43,12 +43,19 @@ export const TechDivStyled = styled.div`
    justify-content: space-between;
    padding: 20px 15px;
    
+   @media(min-width: 760px){
+    margin: 10px auto;
+    width: 55%
+   }
    
 
    h2{
      color: var(--color-grey-1);
      padding-top: 5px;
      font-size: 16px;
+     @media(min-width: 760px){
+      font-size: 18px;
+     }
    }
 
    button{
@@ -59,5 +66,15 @@ export const TechDivStyled = styled.div`
       color: var(--color-grey-1);
       border: none;
       border-radius: 4px;
+      transition: 0.8s;
+      :hover{
+         background-color: var(--color-grey-3);
+      }
+      @media(min-width: 760px){
+         font-size: 18px;
+         width: 40px;
+         height: 40px;
+      }
+      
    }
 `

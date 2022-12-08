@@ -51,3 +51,32 @@ export const notifyErrorLogin = () => {
         theme: "dark",
         });
 }
+
+export const notifySucessTech = (message) => {
+    toast.success(`${message}`, {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
+}
+
+
+
+export const notifyErrorTech = (message) => {
+    toast.error(`${message}`, {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
+}
+

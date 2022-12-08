@@ -20,11 +20,8 @@ export const UserProvider = ({ children }) => {
             return;
           }
           try{
-            const { data } = await api.get("/profile", {
-               headers: {
-               'Authorization': `token ${token}`
-              }
-            })
+            api.defaults.headers.common.authorization = `Bearer ${token}`
+            const { data } = await api.get("/profile", )
             setUser(data)
           }catch(err){
             localStorage.clear()
@@ -36,7 +33,7 @@ export const UserProvider = ({ children }) => {
           getApi()
      },[])
  
-     async function getApiRegister(userRegister,setLoading) {
+     async function getApiRegister(userRegister) {
         try{
            const response = await api.post("/users",userRegister)
            notifySucessRegister()
@@ -49,7 +46,7 @@ export const UserProvider = ({ children }) => {
         }
       }
 
-      async function getApiLogin(user,setLoadind) {
+      async function getApiLogin(user) {
 
         try{
            
@@ -58,11 +55,12 @@ export const UserProvider = ({ children }) => {
           notifySucessLogin()
           localStorage.setItem("@TOKEN",JSON.stringify(userFound.token))
           localStorage.setItem("@USERID",JSON.stringify(userFound.user.id))
+          api.defaults.headers.common.authorization = `Bearer ${userFound.token}`
           setUser(userFound.user)
           navigate(`/dashboard/${userFound.user.id}`)
         }catch(err){
           notifyErrorLogin()
-          setLoadind(false)
+          setLoading(false)
         }
       }
 
