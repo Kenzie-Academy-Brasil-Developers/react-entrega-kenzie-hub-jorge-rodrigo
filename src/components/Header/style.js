@@ -45,7 +45,7 @@ a{
    justify-content: center;
    align-items: center;
    background-color: transparent;
-   padding: 5px 10px;
+   padding: 10px 30px;
    text-decoration: none;
    border-radius: 5px;
    font-size: 12px;
@@ -54,7 +54,7 @@ a{
    transition: .8s;
    @media(min-width:750px){
      font-size:16px;
-     padding: 8px 30px;
+     padding: 6px 30px;
    }
 
 

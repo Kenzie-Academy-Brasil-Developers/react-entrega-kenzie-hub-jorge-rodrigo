@@ -27,7 +27,10 @@ export const InputStyled = styled.fieldset`
       outline: 0;
       border: 1px solid var(--color-grey-3);
       border-radius: 5px;
-      color: var(--color-grey-2);
+      color: var(--color-grey-1);
+      ::placeholder{
+        color: var(--color-grey-2);
+      }
     }
 
 `
